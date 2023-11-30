@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block cambio %}
+<div>
+    <form action="/app/buscar_planta" method="get">
+        {{ form.as_p }}
+        <input type="submit" value="Buscar">
+    </form>
+</div>
+    {% for planta in plantas %}
+        <h2>{{planta.nombre_comun}}</h2>
+        <p class="lead mb-0">
+            N. científico: {{planta.nombre_cientifico}}
+        </p>
+        <hr>
+    {% endfor %}
+{% endblock %}
