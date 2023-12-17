@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block cambio %}
+
+    <p>El nombre científico de la planta es: <b>{{planta.nombre_cientifico}}</b> </p>
+    <p>También conocida comúnmente como: <b> {{planta.nombre_comun}} </b></p>
+    <p>
+        <a href="{% url 'PlantasList' %}">Lista de Plantas</a>
+    </p>
+
+{% endblock %}

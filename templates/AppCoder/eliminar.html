@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block cambio %}
+    
+    <form method="post">
+        {% csrf_token %}
+        Estás a punto de eliminar {{object.nombre_comun}} del repertorio de plantas, ¿estás segurx de esto?
+        <input type="submit" value="Eliminar">
+    </form>
+
+{% endblock %}

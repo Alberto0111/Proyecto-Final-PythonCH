@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block cambio %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Crear Avatar">
+</form>
+{% endblock %}

@@ -1,15 +1,60 @@
 #from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from AppCoder.models import Usuario, Especialista, Planta
-from AppCoder.forms import PlantaForm, BusquedaPlantaForm, UsuarioForm, EspecialistaForm
+from AppCoder.models import Usuario, Especialista, Planta, Comentario
+from AppCoder.forms import PlantaForm, BusquedaPlantaForm, UsuarioForm, EspecialistaForm, ComentarioForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-def mostrar_plantas(request):
-    plantas = Planta.objects.all()
-    contexto = {
-        "plantas": plantas,
-        "form": BusquedaPlantaForm(),
-    }
-    return render(request, 'AppCoder/plantas.html', contexto)
+class PlantaList(LoginRequiredMixin ,ListView):
+    model = Planta
+    template_name = "AppCoder/plantas_1.html"
+
+class PlantaDetalle(DetailView):
+    model = Planta
+    template_name = "AppCoder/planta_detalle.html"
+
+class PlantaCreacion(LoginRequiredMixin ,CreateView):
+    model = Planta
+    success_url = "/app/plantas/listar"
+    template_name = "AppCoder/crear_planta.html"
+    fields = ["nombre_comun", "nombre_cientifico","imagen"]
+
+class PlantaActualizacion(UpdateView):
+    model = Planta
+    success_url = "/app/plantas/listar"
+    template_name = "AppCoder/crear_planta.html"
+    fields = ["nombre_comun", "nombre_cientifico"]
+
+class PlantaEliminar(DeleteView):
+    model = Planta
+    template_name = "AppCoder/eliminar.html"
+    success_url = "/app/plantas/listar"
+
+def home(request):
+    return render (request, "AppCoder/home.html")
+
+def comentario_planta(request, pk):
+    planta = Planta.objects.get(pk=pk)
+    comentarios = planta.comentarios.all()
+    if request.method == "POST":
+        form= ComentarioForm(request.POST)
+        if form.is_valid():
+            comentario = form.save(commit=False)
+            comentario.usuario = request.user
+            comentario.planta = planta
+            comentario.save()
+            return redirect ("Comentarios", pk=pk)
+    else:
+        form = ComentarioForm()
+        contexto = {
+            "planta":planta,
+            "comentarios":comentarios,
+            "form":form,
+        }
+        return render(request, "AppCoder/comentarios.html", contexto)
+    
+def sobre_mi(request):
+    return render(request, "AppCoder/sobre_mi.html")
 
 def crear_planta_form(request):
     if request.method == "POST":

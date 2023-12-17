@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block cambio %}
+<div>
+    <form action="/app/buscar_planta" method="get">
+        <input type="text" name="nombre_comun">
+        <input type="submit" value="Buscar">
+    </form>
+</div>
+<p>
+    <a href="{% url 'PlantaCreate' %}">Agregar una Planta</a>
+</p>
+    {% for planta in object_list %}
+        <h2>{{planta.nombre_comun}}</h2>
+        <p class="lead mb-0">
+            N. científico: {{planta.nombre_cientifico}}
+        </p>
+        {% if planta.imagen %}
+            <img src="{{ planta.imagen.url }}" alt="{{ planta.nombre_comun }}">
+        {% endif %}
+        <p>
+            <a href="{% url 'PlantasDetail' planta.id %}">Detalles</a>
+        </p>
+        <p>
+            <a href="{% url 'Comentarios' planta.id %}">Comentarios</a>
+        </p>
+        <p>
+            <a href="{% url 'PlantaUpdate' planta.id %}">Editar</a>
+        </p>
+        <p>
+            <a href="{% url 'PlantaDelete' planta.id %}">Eliminar</a>
+        </p>
+        <hr>
+    {% endfor %}
+{% endblock %}

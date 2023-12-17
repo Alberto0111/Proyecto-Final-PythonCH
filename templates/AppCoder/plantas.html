@@ -8,10 +8,22 @@
     </form>
 </div>
     {% for planta in plantas %}
-        <h2>{{planta.nombre_comun}}</h2>
-        <p class="lead mb-0">
-            N. científico: {{planta.nombre_cientifico}}
-        </p>
-        <hr>
+    <h2>{{planta.nombre_comun}}</h2>
+    <p class="lead mb-0">
+        N. científico: {{planta.nombre_cientifico}}
+    </p>
+    {% if planta.imagen %}
+        <img src="{{ planta.imagen.url }}" alt="{{ planta.nombre_comun }}">
+    {% endif %}
+    <p>
+        <a href="{% url 'PlantasDetail' planta.id %}">Detalles</a>
+    </p>
+    <p>
+        <a href="{% url 'PlantaUpdate' planta.id %}">Editar</a>
+    </p>
+    <p>
+        <a href="{% url 'PlantaDelete' planta.id %}">Eliminar</a>
+    </p>
+    <hr>
     {% endfor %}
 {% endblock %}

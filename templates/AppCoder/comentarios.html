@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block cambio %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Agregar Comentario</button>
+    </form>
+    <hr>
+    <h1>Comentarios de otros usuarios:</h1>
+    <p>       
+        <ul>
+            {% for comentario in comentarios %}
+                <li>{{ comentario.usuario.username }} - {{ comentario.cuerpo }} - {{ comentario.fecha }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+    <a href="{% url 'PlantasList' %}">Lista de Plantas</a>
+
+{% endblock %}

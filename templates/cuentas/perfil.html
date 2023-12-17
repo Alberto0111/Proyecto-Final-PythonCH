@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Bienvenidx a tu editor de perfil!</h1>
+    <hr>
+    <h2>¿Deseas <a href="{% url 'EditarPerfil' %}">actualizar tu email</a> o actualizar tu <a href="{% url 'Avatar' %}">avatar</a>?</h2>
+    <img src="{% static 'assets\img\testimonials-1.jpg' %}" alt="Foto de home" style="width: 300px">
+    <hr>
+    <h1><a href="{% url 'PlantasList' %}">Regresar</a></h1>
+</body>
+</html>

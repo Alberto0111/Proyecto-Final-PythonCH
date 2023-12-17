@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Bienvenidx al blog de Alberto!</h1>
+    <hr>
+    <h2>¿Deseas <a href="{% url 'Login' %}">iniciar sesión</a> o crear tu propia cuenta en el <a href="{% url 'Registro' %}">registro</a>?</h2>
+    <img src="{% static 'assets\img\testimonials-1.jpg' %}" alt="Foto de home" style="width: 300px">
+    <hr>
+    <h2>¿Quieres saber más de mí y de este blog?<a href="{% url 'SobreMi' %}"> *Leer más!</a></h2>
+</body>
+</html>
