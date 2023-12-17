@@ -3,3 +3,5 @@ Creé las vistas para pantalla de inicio home, un about me y todo lo referente a
 Cada usuario registrado y logeado tiene la posibilidad de agregar una planta, siempre que pueda facilitar el nombre común, el nombre científico y una foto de la planta. Además, cualquier usuario con estas condiciones puede editar los detalles de las plantas, y si es necesario, eliminar una entrada en totalidad (planta). 
 Puedes editar tu perfil (email y avatar), agregar una foto tuya si no la tienes y navegar con libertad en los espacios del blog.
 En el video muestro la página en funcionamiento con todas las opciones que puse a disposición, espero sea de su agrado! :)
+
+Adjunto al readme el link al video subido a youtube: https://youtu.be/iFRgEhY5OqM
